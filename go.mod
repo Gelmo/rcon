@@ -1,3 +1,3 @@
-module github.com/gorcon/rcon
+module github.com/gelmo/rcon
 
 go 1.21

@@ -9,7 +9,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/gorcon/rcon"
+	"github.com/gelmo/rcon"
 )
 
 // Server is an RCON server listening on a system-chosen port on the

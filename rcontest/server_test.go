@@ -5,8 +5,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/gorcon/rcon"
-	"github.com/gorcon/rcon/rcontest"
+	"github.com/gelmo/rcon"
+	"github.com/gelmo/rcon/rcontest"
 )
 
 func TestNewServer(t *testing.T) {

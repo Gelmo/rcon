@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/gorcon/rcon"
-	"github.com/gorcon/rcon/rcontest"
+	"github.com/gelmo/rcon"
+	"github.com/gelmo/rcon/rcontest"
 )
 
 func ExampleServer() {

@@ -3,7 +3,7 @@ package rcontest
 import (
 	"net"
 
-	"github.com/gorcon/rcon"
+	"github.com/gelmo/rcon"
 )
 
 // Context represents the context of the current RCON request. It holds request
