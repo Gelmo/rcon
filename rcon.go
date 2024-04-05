@@ -124,6 +124,34 @@ func Dial(address string, password string, options ...Option) (*Conn, error) {
 	return &client, nil
 }
 
+// DialUDP creates a new authorized Conn udp dialer connection.
+func DialUDP(address string, password string, options ...Option) (*Conn, error) {
+	settings := DefaultSettings
+
+	for _, option := range options {
+		option(&settings)
+	}
+
+	conn, err := net.DialTimeout("udp", address, settings.dialTimeout)
+	if err != nil {
+		// Failed to open UDP connection to the server.
+		return nil, fmt.Errorf("rcon: %w", err)
+	}
+
+	client := Conn{conn: conn, settings: settings}
+
+	if err := client.auth(password); err != nil {
+		// Failed to auth conn with the server.
+		if err2 := client.Close(); err2 != nil {
+			return &client, fmt.Errorf("%w: %s. Previous error: %s", ErrMultiErrorOccurred, err2.Error(), err.Error())
+		}
+
+		return &client, fmt.Errorf("rcon: %w", err)
+	}
+
+	return &client, nil
+}
+
 // Execute sends command type and it string to execute to the remote server,
 // creating a packet with a SERVERDATA_EXECCOMMAND_ID for the server to mirror,
 // and compiling its payload bytes in the appropriate order. The response body
